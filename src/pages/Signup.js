@@ -1,5 +1,8 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { useSignup } from "../hooks/useSignup"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -11,6 +14,12 @@ const Signup = () => {
 
     await signup(email, password)
   }
+  useEffect(() => {
+    if (error) {
+      // Display login error toast
+      toast.error(error);
+    }
+  }, [error]);
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
@@ -30,7 +39,7 @@ const Signup = () => {
       />
 
       <button disabled={isLoading}>Sign up</button>
-      {error && <div className="error">{error}</div>}
+      <ToastContainer/>
     </form>
   )
 }

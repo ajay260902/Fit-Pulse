@@ -1,6 +1,8 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 // components
 import WorkoutDetails from '../components/WorkoutDetails';
@@ -10,6 +12,7 @@ const Home = () => {
   const { workouts, dispatch } = useWorkoutsContext();
   const { user } = useAuthContext();
   const [backendUrl, setBackendUrl] = useState('');
+  const [loading, setLoading] = useState(false); // State to manage loading state
 
   useEffect(() => {
     // Load backend URL from environment variable
@@ -19,6 +22,7 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       if (!user || !backendUrl) {
+        setLoading(true);
         return;
       }
 
@@ -31,9 +35,12 @@ const Home = () => {
 
         if (response.ok) {
           dispatch({ type: 'SET_WORKOUTS', payload: json });
+          setLoading(false)
         }
       } catch (error) {
         console.error('Error fetching workouts:', error);
+      } finally {
+        setLoading(false); // Set loading to false once fetching is done
       }
     };
 
@@ -43,9 +50,25 @@ const Home = () => {
   return (
     <div className="home">
       <div className="workouts">
-        {workouts && workouts.map((workout) => (
-          <WorkoutDetails key={workout._id} workout={workout} />
-        ))}
+        {/* Check if loading is true, if true display loader */}
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', marginTop: 200 }}>
+           <CircularProgress color='success'/>
+          </div>
+        ) : (
+          // If loading is false, display workouts or "No Records" message
+          <>
+            {workouts && workouts.map((workout) => (
+              <WorkoutDetails key={workout._id} workout={workout} />
+            ))}
+            {/* If there are no workouts, display no records message */}
+            {!workouts || workouts.length === 0 && (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', marginTop: 200 }}>
+                <span>No Records</span>
+              </div>
+            )}
+          </>
+        )}
       </div>
       <WorkoutForm />
     </div>

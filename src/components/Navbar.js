@@ -16,10 +16,10 @@ const Navbar = () => {
         <Link to="/">
           <h1>FitPulse</h1>
         </Link>
-          <p>Stay Fit, Feel the Pulse</p>
-        
+        <p>Stay Fit, Feel the Pulse</p>
+
         <nav>
-          
+
           {user && (
             <div>
               <span>{user.email}</span>
@@ -28,8 +28,8 @@ const Navbar = () => {
           )}
           {!user && (
             <div>
-             <button className='btn'><Link to="/login">Login</Link></button> 
-             <button className='btn'><Link to="/signup">Signup</Link></button> 
+              <button className='btn'  ><Link to="/login">Login</Link></button>
+              <button className='btn'><Link to="/signup">Signup</Link></button>
             </div>
           )}
         </nav>
