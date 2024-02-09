@@ -62,7 +62,7 @@ const Home = () => {
               <WorkoutDetails key={workout._id} workout={workout} />
             ))}
             {/* If there are no workouts, display no records message */}
-            {!workouts || workouts.length === 0 && (
+            {(!workouts || workouts.length === 0) && (
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', marginTop: 200 }}>
                 <span>No Records</span>
               </div>

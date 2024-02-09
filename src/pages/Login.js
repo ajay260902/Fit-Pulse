@@ -49,7 +49,7 @@ const Login = () => {
         // throw new Error('Failed to reset password');
         toast.error('Failed to reset password');
       }
-      toast.success('Password reset successfully');
+      toast.success('Password Reset Successfully');
     
       setShowForgotPasswordForm(false)
       setPassword('')
