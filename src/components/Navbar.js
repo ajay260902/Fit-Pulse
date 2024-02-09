@@ -59,7 +59,22 @@ const Navbar = () => {
                   onClick={handleProfilePicClick}
                   style={{ width: 50, height: 50, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ccc', marginBottom: 5 }}
                 >
-                  {profilePic && <img src={profilePic} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' ,cursor:'pointer'}} />} {/* Display profile picture if available */}
+                  {profilePic ? (
+                    <img
+                      src={profilePic}
+                      alt="Profile"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+                     
+                    />
+                  ) : (
+                    <img
+                      src="https://www.shareicon.net/data/512x512/2016/09/15/829472_man_512x512.png" // Path to your default profile picture
+                      alt="Default Profile"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+                      
+                    />
+                  )}
+
                 </div>
                 <span>{user.email}</span>
               </div>
