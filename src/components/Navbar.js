@@ -48,37 +48,33 @@ const Navbar = () => {
       <div className="container">
         <Link to="/">
           <h1>FitPulse</h1>
+          <p>Stay Fit, Feel the Pulse</p>
+
         </Link>
-        <p>Stay Fit, Feel the Pulse</p>
 
         <nav>
           {user && (
             <>
-              <div className="user-info" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div
-                  onClick={handleProfilePicClick}
-                  style={{ width: 50, height: 50, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ccc', marginBottom: 5 }}
-                >
+              <div className="user-info">
+                <div className="profile-pic" onClick={handleProfilePicClick}>
                   {profilePic ? (
                     <img
                       src={profilePic}
                       alt="Profile"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
-                     
+                      className="profile-img"
                     />
                   ) : (
                     <img
-                      src="https://www.shareicon.net/data/512x512/2016/09/15/829472_man_512x512.png" // Path to your default profile picture
+                      src="https://www.shareicon.net/data/512x512/2016/09/15/829472_man_512x512.png"
                       alt="Default Profile"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
-                      
+                      className="profile-img"
                     />
                   )}
-
                 </div>
-                <span>{user.email}</span>
+                <span className='username'>{user.email}</span>
               </div>
-              <button onClick={handleClick}>Log out</button>
+
+              <button className='btn' onClick={handleClick}>Log out</button>
             </>
           )}
           {!user && (

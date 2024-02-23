@@ -58,12 +58,14 @@ const Home = () => {
         ) : (
           // If loading is false, display workouts or "No Records" message
           <>
-            {workouts && workouts.map((workout) => (
+           <div className='workouts-container'> 
+           {workouts && workouts.map((workout) => (
               <WorkoutDetails key={workout._id} workout={workout} />
             ))}
+            </div>
             {/* If there are no workouts, display no records message */}
             {(!workouts || workouts.length === 0) && (
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px', marginTop: 200 }}>
+              <div className='norecord'>
                 <span>No Records</span>
               </div>
             )}
