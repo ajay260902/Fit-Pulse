@@ -1,7 +1,7 @@
 const Footer = ()=>{
     return(
         <div className="footer">
-            <p>&copy; Created By Nick</p>
+            <p>&copy; Created By Ajay</p>
         </div>
     )
 }
