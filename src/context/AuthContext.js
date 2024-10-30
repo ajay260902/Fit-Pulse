@@ -1,4 +1,6 @@
 import { createContext, useReducer, useEffect } from 'react'
+import {jwtDecode} from 'jwt-decode';
+
 
 export const AuthContext = createContext()
 
@@ -22,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
     const user = JSON.parse(localStorage.getItem('user'));
     
     if (user) {
-      const decodedToken = jwt_decode(user.token); // Decode the JWT
+      const decodedToken = jwtDecode(user.token); // Decode the JWT
       const currentTime = Date.now() / 1000; // Current time in seconds
 
       if (decodedToken.exp < currentTime) {
