@@ -26,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
     if (user) {
       const decodedToken = jwtDecode(user.token); // Decode the JWT
       const currentTime = Date.now() / 1000; // Current time in seconds
+
       if (decodedToken.exp < currentTime) {
         // Token is expired
         dispatch({ type: 'LOGOUT' });
